@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personalized Financial Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- Login Page -->
+    <div id="login-container">
+      <img src="user-icon.png" alt="User Icon" class="user-icon" />
+      <!-- Profile Icon -->
+      <h2>Login to Your Bank</h2>
+
+      <input type="text" id="username" placeholder="Username" required />
+      <input type="password" id="password" placeholder="Password" required />
+
+      <div class="remember-me">
+        <input type="checkbox" id="remember" />
+        <label for="remember">Remember me</label>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </div>
+
+      <button onclick="login()">Login</button>
+
+      <p class="signup-text">
+        Don't have an account? <a href="signup.html">Sign up</a>
+      </p>
+
+      <p id="login-error" style="display: none">
+        Invalid login. Please try again.
+      </p>
+    </div>
+
+    <!-- Dashboard (Hidden initially) -->
+    <div id="dashboard" style="display: none">
+      <header>
+        <h1 id="welcome-message">Hi, User!</h1>
+      </header>
+
+      <!-- Banking Actions -->
+      <div class="banking-controls">
+        <button onclick="window.location.href='payment.html'">💳 Pay</button>
+        <button onclick="window.location.href='transfer.html'">
+          🔄 Transfer
+        </button>
+        <button onclick="window.location.href='deposit.html'">
+          🏦 Deposit Check
+        </button>
+        <button onclick="window.location.href='invest.html'">📈 Invest</button>
+        <button onclick="window.location.href='offers.html'">🎁 Offers</button>
+      </div>
+
+      <div class="dashboard-container">
+        <!-- Left: Recent Transactions -->
+        <div class="transactions box">
+          <h2>Recent Transactions</h2>
+          <ul id="transaction-list">
+            <li>Amazon Purchase - $50</li>
+            <li>Electric Bill - $80</li>
+            <li>Restaurant - $45</li>
+            <li>Loan EMI - $200</li>
+            <li>Salary Credited - $5000</li>
+            <li>Gym Membership - $30</li>
+          </ul>
+        </div>
+
+        <!-- Center: Chatbot -->
+        <div id="chatbot" class="box">
+          <div id="chat-header">Personalized FinanceAssistant</div>
+          <div id="chat-body">
+            <p>
+              <strong>FinanceAssistant:</strong> Hi there! How can I assist you
+              with your finances today?
+            </p>
+          </div>
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Type your message..."
+            onkeypress="handleChat(event)"
+          />
+        </div>
+
+        <!-- Right: Account Balances -->
+        <div class="account-balance box">
+          <h2>Account Balance</h2>
+          <div class="balance-container">
+            <div class="balance-card">
+              <h3>Checking</h3>
+              <p>$<span id="checking-balance"></span></p>
+            </div>
+            <div class="balance-card">
+              <h3>Savings</h3>
+              <p>$<span id="savings-balance">5000.00</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Bot Response Area -->
+      <div id="bot-response" class="box" style="display: none"></div>
+
+      <!-- Financial Charts -->
+      <div
+        class="chart-container box"
+        id="charts-container"
+        style="display: none"
+      >
+        <h2>Income vs Expenditure</h2>
+        <canvas id="incomeExpenditureChart"></canvas>
+
+        <h2>Spending per Category</h2>
+        <canvas id="categoryChart"></canvas>
+      </div>
+
+      <!-- Financial Summary -->
+      <div id="financial-summary" class="box" style="display: none"></div>
+
+      <!-- Savings Plan -->
+      <div id="savings-plan" class="box" style="display: none"></div>
+    </div>
+  </body>
+</html>
